@@ -6,21 +6,9 @@ customers as (
 
 ),
 
-cities as (
+customers_and_locations_joined as (
 
-    select * from {{ ref('stg_tech_store__cities') }}
-
-),
-
-states as (
-
-    select * from {{ ref('stg_tech_store__states') }}
-
-),
-
-zip_codes as (
-
-    select * from {{ ref('stg_tech_store__zip_codes') }}
+    select * from {{ ref('int_customers_and_locations_joined') }}
 
 ),
 
@@ -30,32 +18,40 @@ employees as (
 
 ),
 
+order_amounts_by_customer as (
+
+    select * from {{ ref('int_order_amounts_agg_by_customer') }}
+
+),
+
 final as (
 
     select
         customers.customer_id,
         customers.customer_name,
-        cities.city_name,
-        states.state_name,
-        zip_codes.zip_code,
+        customers_and_locations_joined.city_name,
+        customers_and_locations_joined.state_name,
+        customers_and_locations_joined.zip_code,
         employees.full_name as main_employee,
+        employees.is_active as main_employee_is_active,
+        nvl(order_amounts_by_customer.total_revenue_in_usd, 0) 
+            as total_revenue_in_usd,
+        nvl(order_amounts_by_customer.total_quantity, 0) as total_quantity,
         customers.created_at,
         customers.updated_at,
         customers.is_active
 
     from customers
 
-    left join cities
-        on customers.city_id = cities.city_id
-
-    left join states
-        on cities.state_id = states.state_id
-
-    left join zip_codes
-        on cities.zip_code_id = zip_codes.zip_code_id
-
+    left join customers_and_locations_joined
+        on customers.customer_id = customers_and_locations_joined.customer_id
+    
     left join employees
         on customers.main_employee_id = employees.employee_id
+
+    left join order_amounts_by_customer
+        on customers.customer_id = order_amounts_by_customer.customer_id
+
 )
 
 select * from final
