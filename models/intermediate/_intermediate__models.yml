@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: int_customers_and_locations_joined
+  - name: int_order_amounts_agg_by_customer
