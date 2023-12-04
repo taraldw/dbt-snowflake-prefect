@@ -17,6 +17,8 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  staging:
-    example:
+  dbt_training:
+    staging:
       +materialized: view
+    marts:
+      +materialized: table

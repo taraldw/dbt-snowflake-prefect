@@ -15,7 +15,7 @@ final as (
         mainsalesrepid as main_employee_id,
         createdatetime as created_at,
         updatedatetime as updated_at,
-        active as is_active
+        iff(active = 'yes', true, false) as is_active
     
     from customers
 
