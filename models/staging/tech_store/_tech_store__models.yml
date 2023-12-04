@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_tech_store__cities
+  - name: stg_tech_store__customers
+  - name: stg_tech_store__employees
+  - name: stg_tech_store__orders
+  - name: stg_tech_store__products
+  - name: stg_tech_store__states
+  - name: stg_tech_store__zip_codes
