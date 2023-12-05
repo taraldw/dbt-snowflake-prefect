@@ -47,7 +47,9 @@ final as (
         transactions.amount_in_usd,
         transactions.tax_in_usd,
         transactions.total_charged_in_usd,
-        orders.created_at
+        orders.created_at,
+        orders.created_at_est,
+        orders.created_at_date
 
     from orders
 
