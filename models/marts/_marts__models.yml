@@ -2,4 +2,15 @@ version: 2
 
 models:
   - name: customers
+    columns:
+      - name: total_revenue_in_usd
+        tests:
+          - not_negative
   - name: orders
+    columns:
+      - name: price
+        tests:
+          - not_negative
+      - name: tax_in_usd
+        tests:
+          - not_negative
