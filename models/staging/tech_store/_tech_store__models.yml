@@ -3,8 +3,23 @@ version: 2
 models:
   - name: stg_tech_store__cities
   - name: stg_tech_store__customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
   - name: stg_tech_store__employees
   - name: stg_tech_store__orders
   - name: stg_tech_store__products
+    columns:
+      - name: category
+        tests:
+          - accepted_values:
+              values:
+                - Audio
+                - Computers
+                - Accessories
+                - Software
+                - Video
   - name: stg_tech_store__states
   - name: stg_tech_store__zip_codes
