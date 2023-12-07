@@ -1,8 +1,8 @@
-name: 'dbt_training'
+name: 'dbt_snowflake_prefect'
 version: '1.0.0'
 config-version: 2
 
-profile: 'dbt_training'
+profile: 'dbt-snowflake-prefect'
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
