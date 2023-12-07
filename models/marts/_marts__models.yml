@@ -3,11 +3,15 @@ version: 2
 models:
   - name: customers
     columns:
+      - name: customer_id
+        description: The unique identifier for a single customer.
       - name: total_revenue_in_usd
         tests:
           - not_negative
   - name: orders
     columns:
+      - name: order_id
+        description: The unique identifier for a single order.
       - name: price
         tests:
           - not_negative
